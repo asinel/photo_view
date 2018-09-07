@@ -91,6 +91,7 @@ class PhotoView extends StatefulWidget{
     this.gaplessPlayback = false,
     this.size,
     this.heroTag,
+    this.onScaleChangedListener
   }) : super(key: key);
 
   /// Given a [imageProvider] it resolves into an zoomable image widget using. It
@@ -126,6 +127,8 @@ class PhotoView extends StatefulWidget{
 
   /// Assists the activation of a hero animation within [PhotoView]
   final Object heroTag;
+
+  final OnScaleChangedListener onScaleChangedListener;
 
   @override
   State<StatefulWidget> createState() {
@@ -215,6 +218,7 @@ class _PhotoViewState extends State<PhotoView>{
         size: widget.size ?? MediaQuery.of(context).size,
       ),
       heroTag: widget.heroTag,
+      onScaleChangedListener: widget.onScaleChangedListener,
     );
   }
 

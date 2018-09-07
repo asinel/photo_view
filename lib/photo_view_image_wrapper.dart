@@ -3,6 +3,7 @@ import 'package:photo_view/photo_view_scale_boundaries.dart';
 import 'package:photo_view/photo_view_scale_state.dart';
 import 'package:photo_view/photo_view_utils.dart';
 
+typedef void OnScaleChangedListener(double newScale);
 
 class PhotoViewImageWrapper extends StatefulWidget{
   const PhotoViewImageWrapper({
@@ -17,6 +18,7 @@ class PhotoViewImageWrapper extends StatefulWidget{
     this.backgroundColor,
     this.gaplessPlayback = false,
     this.heroTag,
+    this.onScaleChangedListener
   }) : super(key:key);
 
   final Function onDoubleTap;
@@ -29,6 +31,7 @@ class PhotoViewImageWrapper extends StatefulWidget{
   final bool gaplessPlayback;
   final Size size;
   final String heroTag;
+  final OnScaleChangedListener onScaleChangedListener;
 
   @override
   State<StatefulWidget> createState() {
@@ -81,6 +84,8 @@ class _PhotoViewImageWrapperState extends State<PhotoViewImageWrapper> with Tick
   }
 
   void onScaleEnd(ScaleEndDetails details) {
+    widget.onScaleChangedListener(_scale);
+
     final double maxScale = widget.scaleBoundaries.computeMaxScale();
     final double minScale = widget.scaleBoundaries.computeMinScale();
 
