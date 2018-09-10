@@ -19,6 +19,7 @@ class PhotoViewImageWrapper extends StatefulWidget{
     this.gaplessPlayback = false,
     this.heroTag,
     this.onScaleStartListener,
+    this.onScaleUpdateListener,
     this.onScaleEndListener
   }) : super(key:key);
 
@@ -33,6 +34,7 @@ class PhotoViewImageWrapper extends StatefulWidget{
   final Size size;
   final String heroTag;
   final OnScaleChangedListener onScaleStartListener;
+  final OnScaleChangedListener onScaleUpdateListener;
   final OnScaleChangedListener onScaleEndListener;
 
   @override
@@ -82,6 +84,9 @@ class _PhotoViewImageWrapperState extends State<PhotoViewImageWrapper> with Tick
     final Offset delta = details.focalPoint - _normalizedPosition;
     if(details.scale != 1.0){
       widget.onStartPanning();
+    }
+    if (widget.onScaleUpdateListener != null) {
+      widget.onScaleUpdateListener(_scaleBefore, _scale);
     }
     setState(() {
       _scale = newScale;

@@ -92,6 +92,7 @@ class PhotoView extends StatefulWidget{
     this.size,
     this.heroTag,
     this.onScaleStartListener,
+    this.onScaleUpdateListener,
     this.onScaleEndListener
   }) : super(key: key);
 
@@ -130,6 +131,7 @@ class PhotoView extends StatefulWidget{
   final Object heroTag;
 
   final OnScaleChangedListener onScaleStartListener;
+  final OnScaleChangedListener onScaleUpdateListener;
   final OnScaleChangedListener onScaleEndListener;
 
   @override
@@ -221,6 +223,7 @@ class _PhotoViewState extends State<PhotoView>{
       ),
       heroTag: widget.heroTag,
       onScaleStartListener: widget.onScaleStartListener,
+      onScaleUpdateListener: widget.onScaleUpdateListener,
       onScaleEndListener: widget.onScaleEndListener,
     );
   }
